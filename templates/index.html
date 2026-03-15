@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>JobPoint — Home (v2)</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="{% static 'css/style_v2.css' %}" rel="stylesheet"/>
+<style>
+                a:hover.login, .login:hover {
+                    background-color:#00ff66 !important;
+                    color:#000 !important;
+                    transform:scale(1.1);
+                    transition:all 0.3s ease;
+                }
+                </style><style>
+                a:hover.login, .login:hover {
+                    background-color:#00ff66 !important;
+                    color:#000 !important;
+                    transform:scale(1.1);
+                    transition:all 0.3s ease;
+                }
+                </style>
+<style>
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #0056b3;
+}
+</style>
+
+
+<style>
+.btn.btn-cta:hover {
+  box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8);
+  transition: box-shadow 0.3s ease;
+}
+</style>
+
+
+<style>
+.navbar-brand.fw-bold.logo-gradient {
+  font-size: 2rem !important;
+}
+</style>
+
+
+<style>
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navbar .nav-section-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar .nav-section-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="background: linear-gradient(90deg,#001f3f,#003366); min-height:70px;">
+<div class="container">
+<a class="navbar-brand fw-bold logo-gradient" href="{% url 'home' %}">JobPoint</a>
+<button class="navbar-toggler" data-bs-target="#nav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="nav" style="background: linear-gradient(90deg,#001f3f,#003366); min-height:70px;">
+<ul class="navbar-nav ms-auto"><div class="nav-section-center">
+<li class="nav-item"><a class="nav-link" href="{% url 'job_list' %}">Jobs</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'network' %}">Network</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'feed' %}">Feed</a></li>
+<li class="nav-item">
+</a></li>
+</div></ul>
+</div>
+    <a href="{% url 'message' %}" class="nav-link">Messages</a>
+    <a href="{% url 'notification' %}" class="nav-link">Notifications</a>
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+    <a href="{% url 'profile' %}" class="nav-link">
+        <i class="fas fa-user-circle"></i>
+    </a>
+
+{% else %}
+
+    <a href="{% url 'login' %}" class="nav-link">Login</a>
+    <a href="{% url 'signup' %}" class="nav-link">Signup</a>
+
+{% endif %}
+
+    <button class="btn" style="float:right;"><a href="{% url 'profile' %}" class="profile-icon"><i class="fas fa-user-circle"></i></a></button>
+</nav>
+
+<header class="hero d-flex align-items-center">
+<div class="container text-white">
+<div class="row align-items-center">
+<div class="col-md-7">
+<h1 class="display-5 fw-bold reveal">Discover opportunities — grow your career.</h1>
+<p class="lead mb-4 reveal delay-1">JobPoint helps you find jobs, connect with companies, and build your professional network.</p>
+<a href="{% url 'job_list' %}" 
+   class="btn btn-cta btn-lg reveal delay-2">
+   Browse Jobs
+</a><div class="counters d-flex gap-4 mt-4 reveal delay-3">
+<div class="text-center">
+<div class="counter" data-target="1200">0</div>
+<div class="small">Jobs Available</div>
+</div>
+<div class="text-center">
+<div class="counter" data-target="320">0</div>
+<div class="small">Companies</div>
+</div>
+<div class="text-center">
+<div class="counter" data-target="8500">0</div>
+<div class="small">Active Users</div>
+</div>
+</div>
+</div>
+<div class="col-md-5 d-none d-md-block">
+<div class="floating-card reveal delay-2">
+<img alt="team" class="img-fluid rounded shadow" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&amp;w=800&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=placeholder"/>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-gradient"></div>
+</header>
+<section class="py-5">
+<div class="container">
+<h3 class="mb-4">Job Categories</h3>
+<div class="row g-3">
+<!-- category cards -->
+<div class="col-sm-6 col-md-3">
+<div class="card p-3 h-100 animated-card">
+<i class="fa-solid fa-code fa-2x mb-2 icon-gradient"></i>
+<h5>Engineering</h5>
+<p class="small text-muted">Software, DevOps, QA</p>
+</div>
+</div>
+<div class="col-sm-6 col-md-3">
+<div class="card p-3 h-100 animated-card">
+<i class="fa-solid fa-chart-line fa-2x mb-2 icon-gradient"></i>
+<h5>Sales &amp; Marketing</h5>
+<p class="small text-muted">Digital, B2B, Growth</p>
+</div>
+</div>
+<div class="col-sm-6 col-md-3">
+<div class="card p-3 h-100 animated-card">
+<i class="fa-solid fa-briefcase fa-2x mb-2 icon-gradient"></i>
+<h5>Business</h5>
+<p class="small text-muted">Operations, HR, Management</p>
+</div>
+</div>
+<div class="col-sm-6 col-md-3">
+<div class="card p-3 h-100 animated-card">
+<i class="fa-solid fa-paint-brush fa-2x mb-2 icon-gradient"></i>
+<h5>Design</h5>
+<p class="small text-muted">UI/UX, Graphic Design</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="pb-5">
+<div class="container">
+<h3 class="mb-4">Featured Jobs</h3>
+<div class="row g-3">
+<!-- job cards -->
+<div class="col-md-4">
+<div class="card job-card h-100 hover-grow">
+<img alt="company" class="card-img-top" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&amp;w=1200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=placeholder"/>
+<div class="card-body">
+<h5 class="card-title">Frontend Developer</h5>
+<p class="card-text small text-muted">Acme Corp • Remote</p>
+<p class="card-text">Experience with React, HTML, CSS. Competitive salary and remote-first team.</p>
+<a href="{% url 'job_list' %}" class="stretched-link">View Job</a>
+
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card job-card h-100 hover-grow">
+<img alt="company" class="card-img-top" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&amp;w=1200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=placeholder"/>
+<div class="card-body">
+<h5 class="card-title">Product Manager</h5>
+<p class="card-text small text-muted">BetaWorks • On-site</p>
+<p class="card-text">Lead cross-functional product initiatives in a fast-paced environment.</p>
+<a class="stretched-link" {% url 'job_list' %}>View Job</a>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card job-card h-100 hover-grow">
+<img alt="company" class="card-img-top" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&amp;w=1200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=placeholder"/>
+<div class="card-body">
+<h5 class="card-title">Data Analyst</h5>
+<p class="card-text small text-muted">DataLab • Hybrid</p>
+<p class="card-text">Strong SQL skills and experience with data visualization tools.</p>
+<a class="stretched-link" {% url 'job_list' %}>View Job</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="background-color:#000;color:#fff;padding:50px 20px;text-align:center;font-family:Arial,sans-serif;animation:fadeIn 1.5s;">
+<style>
+    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+    footer a:hover {transform:scale(1.2);color:#0f0;transition:all 0.3s ease;}
+    .social-icon {color:#fff;margin:0 10px;font-size:22px;transition:all 0.3s ease;}
+    .footer-section {margin-bottom:20px;}
+  </style>
+<div class="footer-section">
+<h3>Our Team</h3>
+<p>Nilesh Prajapati (Frontend)| Mohd Akthar Khan (Backend) | Parvej Shah (Database)</p>
+</div>
+<div class="footer-section">
+<h3>Contact Us</h3>
+<p>Email: infojobpoint@gmail.com | Phone: +91 9984139475</p>
+<p>Address: Naini Prayagraj Uttar Pradesh</p>
+</div>
+<div class="footer-section">
+<a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+</div>
+<p>© 2025 JobPoint. All rights reserved.</p>
+    <a href="{% url 'about' %}">About</a>| <a href="{% url 'contact' %}">Contact</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/script_v2.js' %}"></script>
+
+</body>
+</html>

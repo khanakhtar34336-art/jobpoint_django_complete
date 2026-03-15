@@ -1,0 +1,24 @@
+<h2>Apply for {{ job.title }}</h2>
+
+
+{% if messages %}
+
+{% for message in messages %}
+
+<p style="color:green;">{{ message }}</p>
+
+{% endfor %}
+
+{% endif %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Upload Resume:</label><br><br>
+    <input type="file" name="resume" required><br><br>
+    <button type="submit">Submit Application</button>
+</form>
+
+<br>
+
+<a href="{% url 'job_list' %}">Back</a>

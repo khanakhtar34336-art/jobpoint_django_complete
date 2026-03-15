@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Profile - JobPoint</title>
+    <link rel="stylesheet" href="style_v2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffffff, #d4f1ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .profile-container {
+            background-color: #acddde;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .profile-photo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .profile-photo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
+        .upload-btn {
+            display: block;
+            margin: 10px auto;
+            color: #007bff;
+            font-size: 14px;
+        }
+        h3 {
+            color: #004c70;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: 600;
+            color: #00384f;
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+        input:hover, textarea:hover {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+            border-color: #007bff;
+        }
+        textarea {
+            resize: none;
+        }
+        .languages label {
+            font-weight: normal;
+            margin-right: 15px;
+        }
+        .btn-submit {
+            width: 100%;
+            margin-top: 25px;
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .btn-submit:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+     
+<div style="display:flex; justify-content:space-between; padding:10px; background:#007bff; color:white;">
+    <div>JobPoint</div>
+
+    {% if user.is_authenticated %}
+        <div style="display:flex; align-items:center; gap:10px;">
+            {% if request.user.profile.profile_photo %}
+                <img src="{{ request.user.profile.profile_photo.url }}" 
+                     width="40" height="40" 
+                     style="border-radius:50%;">
+                     <h2>Welcome {{ user.username }}</h2>
+            {% else %}
+                <img src="https://via.placeholder.com/40" 
+                     style="border-radius:50%;">
+            {% endif %}
+            {{ user.username }}
+        </div>
+
+</div>
+    
+<h2>User Profile</h2>
+
+<p>Username: {{ profile.user.username }}</p>
+<p>Contact: {{ profile.contact }}</p>
+<p>Degree: {{ profile.degree }}</p>
+<p>Institute: {{ profile.institute }}</p>
+<p>Graduation Year: {{ profile.graduation_year }}</p>
+
+<a href="{% url 'job_list' %}">View Jobs</a>
+<a href="{% url 'logout' %}">
+<button style="background:red;color:white;padding:8px 15px;border:none;border-radius:5px;">
+Logout
+</button>
+</a>
+
+       
+    <h2>Not logged in</h2>
+{% endif %}
+
+    <div class="logo">JobPoint</div>
+
+           {% if messages %}
+            {% for message in messages %}
+        <p style="color: green; font-weight: bold;">
+            {{ message }}
+        </p>
+                {% endfor %}
+            {% endif %}
+         
+ 
+        <form method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+
+             <div class="profile-photo">
+        {% if profile.profile_photo %}
+            <img src="{{ profile.profile_photo.url }}" width="150">
+        {% else %}
+            <img src="https://via.placeholder.com/150" width="150">
+        {% endif %}
+    <a href="{% url 'accounts:register' %}">My Profile</a>
+
+        <input type="file" name="profile_photo">
+        <div>Upload Profile Photo (.jpg)</div>
+    </div>
+            <h3>User Information</h3>
+            <a href="/accounts/connect/{{ user.id }}/">
+            Connect
+            </a>
+            <label>Full Name</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ user.email }}">
+            <label>Contact Number</label>
+            <input type="tel" name="contact" value="{{ profile.contact }}">
+            <label>About Me</label>
+            <textarea name="about">{{ profile.about }}</textarea>
+
+            <h3>Education Details</h3>
+            <label>Degree</label>
+            <input type="text" name="degree" value="{{ profile.degree }}">
+            <label>Institute</label>
+            <input type="text" name="institute" value="{{ profile.institute }}">
+            <label>Year of Graduation</label>
+            <input type="text" name="graduation_year" value="{{ profile.graduation_year }}">
+
+            <h3>Upload Your Resume</h3>
+            <input type="file" name="resume">
+
+            <h3>Select Languages</h3>
+            <div class="languages">
+                <label><input type="checkbox" name="languages" value="English"> English</label>
+                <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+                <label><input type="checkbox" name="languages" value="Marathi"> Marathi</label>
+                <label><input type="checkbox" name="languages" value="Other"> Other</label>
+
+            </div>
+            <a href="{% url 'send_message' user.id %}">
+            Send Message
+            </a>
+            
+            <button type="submit" class="btn-submit">Save Profile</button>
+            
+        </form>
+    </div>
+
+
+</body>
+</html>

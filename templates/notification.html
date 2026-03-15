@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Notifications - JobPoint</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f4f7fb;
+      color: #333;
+    }
+
+    .notification-container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #001f3f;
+      margin-bottom: 40px;
+    }
+
+    .notification-card {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px 25px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      border-left: 6px solid #007bff;
+    }
+
+    .notification-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .notification-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #003566;
+      margin-bottom: 8px;
+    }
+
+    .notification-company {
+      font-size: 1rem;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .notification-description {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .notification-time {
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Latest Job Notifications</h2>
+
+{% for job in jobs %}
+
+<div style="border:1px solid gray; padding:10px; margin:10px">
+
+<h3>{{ job.title }}</h3>
+
+<p>{{ job.description|truncatewords:15 }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No new jobs</p>
+
+{% endfor %}
+
+  <div class="notification-container">
+    <h1 class="page-title">Latest Job Notifications</h1>
+
+    <!-- Notification 1 -->
+    <div class="notification-card">
+      <div class="notification-title">Frontend Developer Required</div>
+      <div class="notification-company">TechNova Pvt. Ltd.</div>
+      <div class="notification-description">
+        We are looking for a skilled Frontend Developer with experience in React and Bootstrap.
+        Apply before 20th November 2025.
+      </div>
+      <div class="notification-time">Posted 2 hours ago</div>
+    </div>
+
+    <!-- Notification 2 -->
+    <div class="notification-card">
+      <div class="notification-title">Data Analyst Internship</div>
+      <div class="notification-company">Insight Analytics</div>
+      <div class="notification-description">
+        Internship opportunity for data enthusiasts! Basic knowledge of Python and Excel preferred.
+        Duration: 3 months.
+      </div>
+      <div class="notification-time">Posted 5 hours ago</div>
+    </div>
+
+    <!-- Notification 3 -->
+    <div class="notification-card">
+      <div class="notification-title">Backend Developer - Node.js</div>
+      <div class="notification-company">CloudNet Solutions</div>
+      <div class="notification-description">
+        Hiring backend developers experienced in Node.js, Express, and MongoDB.
+        Remote work available.
+      </div>
+      <div class="notification-time">Posted yesterday</div>
+    </div>
+
+    <!-- Notification 4 -->
+    <div class="notification-card">
+      <div class="notification-title">Graphic Designer (Full-Time)</div>
+      <div class="notification-company">Creative Pixel Studio</div>
+      <div class="notification-description">
+        Looking for a creative graphic designer proficient in Adobe Illustrator and Photoshop.
+        Freshers welcome.
+      </div>
+      <div class="notification-time">Posted 2 days ago</div>
+    </div>
+
+  </div>
+<footer style="background-color:#000;color:#fff;padding:50px 20px;text-align:center;font-family:Arial,sans-serif;animation:fadeIn 1.5s;">
+<style>
+    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+    footer a:hover {transform:scale(1.2);color:#0f0;transition:all 0.3s ease;}
+    .social-icon {color:#fff;margin:0 10px;font-size:22px;transition:all 0.3s ease;}
+    .footer-section {margin-bottom:20px;}
+  </style>
+<div class="footer-section">
+<h3>Our Team</h3>
+<p>Nilesh Prajapati (Frontend)| Mohd Akthar Khan (Backend) | Parvej Shah (Database)</p>
+</div>
+<div class="footer-section">
+<h3>Contact Us</h3>
+<p>Email: infojobpoint@gmail.com | Phone: +91 9984139475</p>
+<p>Address: Naini Prayagraj Uttar Pradesh</p>
+</div>
+<div class="footer-section">
+<a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+<a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+</div>
+<p>© 2025 JobPoint. All rights reserved.</p>
+    <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+</footer>
+</body>
+</html>

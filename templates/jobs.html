@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobPoint - Featured Jobs</title>
+  <link rel="stylesheet" href="style_v2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+	font-family: 'Poppins', sans-serif;
+	background: #f5f8fc;
+	color: #333; margin: 0;
+	padding: 0;
+	}
+    .container {
+	width: 90%; margin: 40px auto;
+	}
+    h1 {
+	text-align: center;
+	color: #004aad;
+	margin-bottom: 40px;
+	}
+    .job-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+	gap: 20px;
+	}
+    .job-card {
+	background: white;
+	padding: 20px;
+	border-radius: 12px; 
+	box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+	transition: transform 0.3s;
+	}
+    .job-card:hover {
+	transform: translateY(-5px);
+	}
+    .job-title {
+	font-size: 1.2rem; 
+	font-weight: 600;
+	color: #004aad;
+	}
+    .job-company {
+	color: #666; 
+	font-size: 0.95rem; 
+	margin-bottom: 10px;
+	}
+    .job-desc {
+	font-size: 0.9rem;
+	color: #555; 
+	margin-bottom: 15px;
+	}
+    .btn-apply {
+	background: linear-gradient(90deg, #007bff, #00aaff); 
+	color: white; 
+	border: none; 
+	padding: 10px 18px;
+	border-radius: 6px;
+	cursor: pointer; 
+	transition: all 0.3s;
+	}
+    .btn-apply:hover {
+	transform: scale(1.05);
+	box-shadow: 0 0 10px rgba(0,123,255,0.5);
+	}
+
+    /* Modal Styles */
+    .modal {display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.5);}
+    .modal-content {background-color: #fff; margin: 10% auto; padding: 25px; border-radius: 10px; width: 90%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+    .modal h2 {text-align: center; color: #004aad;}
+    .form-group {margin-bottom: 15px;}
+    label {display: block; margin-bottom: 5px; color: #333;}
+    input, textarea {width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;}
+    input[type="file"] {border: none;}
+    .btn-submit {background: #004aad; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer;}
+    .btn-submit:hover {background: #007bff;}
+    .close {float: right; font-size: 24px; cursor: pointer; color: #888;}
+    .close:hover {color: #000;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Featured Job Openings</h1>
+    <div class="job-grid">
+      <div class="job-card">
+        <div class="job-title">Frontend Developer</div>
+        <div class="job-company">TechNova Pvt Ltd</div>
+        <div class="job-desc">Build responsive UI using React & Tailwind CSS.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+      <div class="job-card">
+        <div class="job-title">Data Analyst</div>
+        <div class="job-company">DataMind Analytics</div>
+        <div class="job-desc">Analyze business trends and visualize datasets effectively.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+      <div class="job-card">
+        <div class="job-title">Graphic Designer</div>
+        <div class="job-company">CreativeX Studio</div>
+        <div class="job-desc">Design engaging visuals for marketing and digital campaigns.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+      <div class="job-card">
+        <div class="job-title">Marketing Manager</div>
+        <div class="job-company">BrightBuzz Media</div>
+        <div class="job-desc">Lead a team and manage brand visibility across channels.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+      <div class="job-card">
+        <div class="job-title">Backend Engineer</div>
+        <div class="job-company">CodeWorks Ltd</div>
+        <div class="job-desc">Develop robust REST APIs using Node.js and MongoDB.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+      <div class="job-card">
+        <div class="job-title">HR Specialist</div>
+        <div class="job-company">PeopleFirst HR</div>
+        <div class="job-desc">Manage recruitment and employee engagement processes.</div>
+        <button class="btn-apply" onclick="openModal()">Apply Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Form -->
+  <div id="applyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Apply for this Job</h2>
+      <form id="applyForm" onsubmit="return validateForm()">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="resume">Upload Resume (.pdf)</label>
+          <input type="file" id="resume" accept=".pdf" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("applyModal");
+    function openModal() { modal.style.display = "block"; }
+    function closeModal() { modal.style.display = "none"; }
+    window.onclick = function(event) {
+      if (event.target === modal) { closeModal(); }
+    }
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const resume = document.getElementById("resume").value;
+      if (!name || !email || !resume) {
+        alert("Please fill all fields and upload your resume.");
+        return false;
+      }
+      if (!resume.endsWith(".pdf")) {
+        alert("Only PDF resumes are accepted.");
+        return false;
+      }
+      alert("Your application has been submitted successfully!");
+      closeModal();
+      return false;
+    }
+  </script>
+</body>
+</html>

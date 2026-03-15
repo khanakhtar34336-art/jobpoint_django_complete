@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Detail</title>
+</head>
+<body>
+
+<h1>{{ job.title }}</h1>
+
+<p>{{ job.description }}</p>
+
+<p><b>Location:</b> {{ job.location }}</p>
+
+{% if user.is_authenticated %}
+
+<a href="{% url 'apply_job' job.id %}">
+<button>Apply Job</button>
+</a>
+
+{% else %}
+
+<p>Please login to apply</p>
+
+{% endif %}
+
+</body>
+</html>
